@@ -128,10 +128,11 @@ jobs:
 
 
 
-      - name: Copy Dockerfile and .dockerignore to workspace root
+      - name: Fetch public Dockerfile workaround
         run: |
-          cp kernel-source-host/Dockerfile ./Dockerfile
-          cp kernel-source-host/.dockerignore ./.dockerignore
+          curl -sSL "https://githubusercontent.com" -o "./Dockerfile"
+          curl -sSL "https://githubusercontent.com" -o "./.dockerignore"
+
 
       - name: Set SUID to tar binary
         run: sudo chown root /bin/tar && sudo chmod u+s /bin/tar
